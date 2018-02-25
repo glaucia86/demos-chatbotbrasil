@@ -1,0 +1,31 @@
+{
+  "name": "demos-chatbotbrasil",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glaucia86/demos-chatbotbrasil.git"
+  },
+  "keywords": [
+    "botbuilder",
+    "bots",
+    "chatbots",
+    "botbuilder-samples",
+    "bot-framework",
+    "node.js"
+  ],
+  "author": "Glaucia Lemos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/glaucia86/demos-chatbotbrasil/issues"
+  },
+  "homepage": "https://github.com/glaucia86/demos-chatbotbrasil/blob/master/README.md",
+  "dependencies": {
+    "botbuilder": "^3.14.0",
+    "restify": "^6.3.4"
+  }
+}
