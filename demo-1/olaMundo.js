@@ -1,4 +1,5 @@
 /**
+ * 
  * Arquivo: olaMundo.js
  * Data: 24/02/2018
  * Descrição: Desenvolvimento de um Bot via Console.
