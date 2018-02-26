@@ -8,6 +8,8 @@
  */
 
 const builder = require('botbuilder');
+//Aqui estou chamando a biblioteca da api 'MovieDb':
+const moviedb = require('moviedb')(process.env.MOVIE_DB_API_KEY);
 
 const connector = new builder.ConsoleConnector().listen();
 const bot = new builder.UniversalBot(connector);
