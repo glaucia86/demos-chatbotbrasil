@@ -41,3 +41,35 @@ bot.dialog('/perguntaNome', [
     session.endDialog('Olá %s!', session.userData.nome);
   }
 ]);
+
+//Aqui iremos criar uma lógica a qual iremos guardar as infos dos Id dos gêneros dos filmes:
+intencoes.matches('/^filme/i', [
+    session =>
+        session.beginDialog('/generoPrompt'), 
+    (session, results) => {
+        if (results.response.id > 0) {
+            session.dialogData.genero = results.response.id;
+            session.beginDialog('/anoPrompt');
+        } else {
+            session.send('Tudo bem! Talvez numa próxima vez!');
+            session.endDialog();
+        }
+    },
+    //Aqui iremos guardar as infos sobre 'ano':
+    (session, results) => {
+        session.dialogData.ano = results.response;
+        getFilme(session);
+    }
+]);
+
+//Aqui estamos criando uma lista de opções para o usuário se interagir com a Api do MovieDb:
+bot.dialog('/generoPrompt', [
+    session => 
+        builder.Prompts.choice(session,  'Que tipo de gênero de filme você gostaria de recomendar?', generos),
+    (session, results) => {
+        const opcao = generos[results.response.entity.toLowerCase()];
+
+        //Aqui retornaremos a escolha do usuário:
+        session.endDialogWithResult({ response: opcao });
+    },
+]);
