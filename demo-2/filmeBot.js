@@ -12,10 +12,13 @@ const builder = require('botbuilder');
 const connector = new builder.ConsoleConnector().listen();
 const bot = new builder.UniversalBot(connector);
 
-//Início da interação por diálogos com o usuário com o Bot:
-bot.dialog('/', [
-    session => 
-        builder.Prompts.text(session, `Olá! Tudo bem? Eu sou o FilmeBot. Qual é o seu nome?`),
-    (session, results) =>
-        session.send('Olá %s!', results.response),
+//Início da interação por diálogos com o usuário com o Bot: (http://locahost:3979/api/perguntaNome)
+bot.dialog('/perguntaNome', [
+  session =>
+    builder.Prompts.text(session, `Olá! Tudo bem? Eu sou o FilmeBot. Qual é o seu nome?`),
+  (session, results) => {
+    //Aqui estou criando um local para guardar o nome do usuário:
+    session.userData.nome = results.response;
+    session.endDialog('Olá %s!', session.userData.nome);
+  }
 ]);
