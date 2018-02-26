@@ -24,28 +24,31 @@
 			<h1 class="text-center"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Daily Bot</h1>
 			<h2 class="text-center">Glaucia Lemos</h2>
 			<h3 class="text-center">Software Developer</h3>
-			<h4 class="text-center">Desenvolvido com muito
-				<span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Brasil, Rio de Janeiro
+			<h4 class="text-center">Desenvolvido com muito<span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Brasil, Rio de Janeiro
 				<a href="http://www.code4coders.wordpress.com" target="_blank"></a>
 			</h4>
-
 		</div>
 
 		<section class="main">
 			<h2>Equipes</h2>
-			<div>
-				<select id="teams">
+			<div class="input-group">
+				<select id="teams" class="form-control width100"> 
 					<option>Selecione uma equipe...</option>
 				</select>
-				<input type="text" id="newTeamName" placeholder="Nome da nova Equipe..." />
-				<button id="addTeam" disabled type="button">+</button>
+				<span class="input-group-btn">
+        			<button id="addTeam" disabled type="button" class="btn btn-primary">+</button>
+    			</span>
 			</div>
-
-			<div id="members"></div>
-			<button id="addMember" type="button">+</button>
-
+			<br>
+			<div id="members" class="input-group">
+				<input type="text" id="newTeamName" class="form-control width100" placeholder="Inclui Nome da Nova Equipe" />
+				<span class="input-group-btn">
+					<button id="addMember" type="button" class="btn btn-primary">+</button>
+				</span>
+			</div>
+			
 			<p id="message"></p>
-			<button id="save" type="button">Salvar</button>
+			<button id="save" type="button" class="btn btn-success">Salvar</button>
 
 		</section>
 		<footer></footer>
