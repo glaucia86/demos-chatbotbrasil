@@ -10,7 +10,9 @@
  */
 
 const builder = require("botbuilder");
-const moviedb = require("moviedb")(process.env.MOVIE_DB_API_KEY);
+const moviedb = require("moviedb"); //(process.env.MOVIE_DB_API_KEY);
+const restify = require('restify');
+const apiKey = require('../../demos-chatbotbrasil/.env');
 
 // Configuração do Server via Restify:
 const server = restify.createServer();
@@ -27,8 +29,8 @@ const connector = new builder.ChatConnector({
 const bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-const intencoes = new builder.IntentDialog();
-bot.dialog('/', intencoes);
+const intents = new builder.IntentDialog();
+bot.dialog('/', intents);
 
 //Aqui iremos resgatar as informações de maneira dinâmica da API 'MovieDb':
 //Site: https://developers.themoviedb.org/3/getting-started/images
@@ -107,7 +109,7 @@ const getFilme = session => {
     });
 };
 
-intecoes.onDefault([
+intents.onDefault([
 (session, args, next) => {
     //Aqui irei validar se o nome do usuário já foi informado, caso contrário invocaremos o dialog '/perguntaNome':
     if (!session.userData.nome) {
@@ -131,7 +133,7 @@ bot.dialog('/perguntaNome', [
 }]);
 
 //Aqui iremos criar uma lógica a qual iremos guardar as infos dos Id dos gêneros dos filmes:
-intencoes.matches('/^filme/i', [
+intents.matches('/^filme/i', [
     session =>
         session.beginDialog('/generoPrompt'), 
     (session, results) => {
