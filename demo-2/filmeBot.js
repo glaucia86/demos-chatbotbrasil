@@ -73,3 +73,15 @@ bot.dialog('/generoPrompt', [
         session.endDialogWithResult({ response: opcao });
     },
 ]);
+
+//Aqui estamos criando uma lógica de validação do ano digitado pelo usuário de um determinado filme:
+bot.dialog('/anoPrompt', [
+    session => 
+        builder.Prompts.text
+            (session, `Digite o ano de lançamento do filme (no formato yyyy) se você quiser especificar algum filme. Caso contrário, responda como 'não'`),
+    (session, results) => {
+        const coincide = results.response.match(/\d{4}/g);
+
+        session.endDialogWithResult({ response: coincide });
+    },
+]);
