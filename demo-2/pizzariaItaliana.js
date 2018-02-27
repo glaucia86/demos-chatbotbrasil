@@ -29,15 +29,13 @@ const connector = new builder.ChatConnector({
 const bot = new builder.UniversalBot(connector);
 
 //===> Configuração LUIS:
-console.log(process.env);
-console.log(process.env.LUIS_MODEL_URL);
 const recognizer = new builder.LuisRecognizer(process.env.LUIS_MODEL_URL);
 const intents = new builder.IntentDialog({ recognizers: [recognizer] });
 
 //===> Configuração dos 'Intents'(Intenções):
 
 //Endpoint - Saudar:
-intents.matches("saudar", (session, results) => {
+intents.matches("Saudar", (session, results) => {
   session.send("Oi! Tudo bem? Em que eu posso ajudar?");
 });
 
