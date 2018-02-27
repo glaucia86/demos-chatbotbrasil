@@ -10,7 +10,9 @@
 
 //Aqui estou carregando os enviroments que estão vindo do
 //arquivo 'env':
-require("dotenv-extended").load();
+require("dotenv-extended").load({
+  path: "../.env"
+});
 
 const moment = require("moment");
 const builder = require("botbuilder");
@@ -49,17 +51,14 @@ intents.matches("Pedir", [
       "Margarita",
       "Portuguesa",
       "Mussarela",
-      "Especialida"
+      "Especializada"
     ];
     const entityPizza = builder.EntityRecognizer.findEntity(args.entities, "Pizza");
 
     //Aqui estaremos verificando com o LUIS os melhores 'matches' para a solicitação
     //do pedido da pizza através da Entidade: Pizza:
     if (entityPizza) {
-      const match = builder.EntityRecognizer.findBestMatch(
-        pizzas,
-        entityPizza.entity
-      );
+      const match = builder.EntityRecognizer.findBestMatch(pizzas, entityPizza.entity);
     }
 
     //Caso não encontre o que o usuário está solicitando:
