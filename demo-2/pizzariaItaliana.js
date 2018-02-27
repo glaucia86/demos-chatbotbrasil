@@ -5,7 +5,6 @@
  * Descrição: Desenvolvimento de um Bot de pedido de pizza integrado com o LUIS.
  * Author: Glaucia Lemos
  *
- * Observação: para executar: 'npm run demo-2'
  */
 
 //Aqui estou carregando os enviroments que estão vindo do
