@@ -26,6 +26,7 @@
   "homepage": "https://github.com/glaucia86/demos-chatbotbrasil/blob/master/README.md",
   "dependencies": {
     "botbuilder": "^3.14.0",
+    "moment": "^2.20.1",
     "restify": "^6.3.4"
   }
 }
