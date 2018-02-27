@@ -38,6 +38,7 @@ intents.matches('Saudar', (session, results) => {
 
 //Endpoint - Pedir:
 intents.matches('Pedir', [(session, args, next) => {
+
     const pizzas = ['Quatro Queijos', 'Calabreza', 'Frango Catupiri', 'Margarita', 'Portuguesa', 'Mussarela', 'Especialida'];
     const entityPizza = builder.EntityRecognizer.findEntity(args.entities, 'Pizza');
 
@@ -46,9 +47,44 @@ intents.matches('Pedir', [(session, args, next) => {
     if (entityPizza) {
         const match = builder.EntityRecognizer.findBestMatch(pizzas, entityPizza.entity);
     }
-    
+        
+    //Caso não encontre o que o usuário está solicitando:
     if (!match) {
-
+            builder.Prompts.choice(session, 'No momento só temos estas pizzas disponíveis. Qual que você gostaria de pedir?', pizzas);
+    } else {
+            next({ response: match });
     }
-}
-]);
+    }, function(session, results) {
+
+    //Aqui é para indicar em quanto tempo o pedido da pizza deverá ser entregue: em 30 minutos:
+    if (results.response) {
+        const time = moment().add(30, 'm');
+
+        session.dialogData.time = time.format('HH:mm');
+        session.send('Pronto! Sua pizza %s chegará às %s.', results.response.entity, session.dialogData.time);
+    } else {
+        session.send('Sem problemas! Se não gostarem, podem pedir numa próxima vez! :D');
+    }
+}]);
+
+//Endpoint - Cancelar:
+intents.matches('Cancelar', (session, results) => {
+    session.send('Pedido cancelado com sucesso! Muito Obrigada! Até a próxima!');
+});
+
+//Endpoint - Verificar:
+intents.matches('Verificar', (session, results) => {
+    session.send('Sua pizza chegará às %s', session.dialogData.time);
+});
+
+//Endpoint - Default:
+intents.onDefault(builder.DialogAction.send('Desculpe! Mas, não entendi o que você quis pedir!'));
+
+bot.dialog('/');
+
+//Configuração do Servidor via Restify:
+server.post('/api/messages', connector.listen());
+
+server.listen(process.env.port || process.env.PORT || 3978, () => {
+    console.log('Aplicação executando na porta %s', server.name, server.url);
+});
