@@ -80,7 +80,7 @@ intents.matches('Verificar', (session, results) => {
 //Endpoint - Default:
 intents.onDefault(builder.DialogAction.send('Desculpe! Mas, não entendi o que você quis pedir!'));
 
-bot.dialog('/');
+bot.dialog('/', intents);
 
 //Configuração do Servidor via Restify:
 server.post('/api/messages', connector.listen());
