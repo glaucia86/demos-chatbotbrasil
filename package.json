@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "demo-2": "node ./demo-2/pizzariaItaliana.js"
   },
   "repository": {
     "type": "git",
