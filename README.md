@@ -11,7 +11,7 @@ Repositório responsável pelas demos realizadas durante o ChatBots Brasil meetu
 
 Para realizar as demos dessa série, se faz necessário instalar os seguintes programas:
 
-* Visual Studio Code - [DOWNLOAD AQUI](https://code.visualstudio.com/)
+* Visual Studio Code - [DOWNLOAD AQUI](https://code.visualstudio.com/?WT.mc_id=javascript-0000-gllemos)
 * Node.JS - [DOWNLOAD AQUI](https://nodejs.org/en/)
 * Microsoft Bot Framework Emulator - [DOWNLOAD AQUI](https://github.com/Microsoft/BotFramework-Emulator/releases
 )
